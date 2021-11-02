@@ -14,7 +14,16 @@ popisek_zvirat = pandas.read_csv("lexikon-zvirat.csv", sep=";")
 popisek_zvirat = popisek_zvirat.dropna(how="all", axis="columns")
 popisek_zvirat = popisek_zvirat.dropna(how="all", axis="rows")
 popisek_zvirat = popisek_zvirat.set_index("id")
+
+
+# print(popisek_zvirat)
+
+def popisek(radek):
+    title = popisek_zvirat.title + "preferuje následující typ stravy:" + popisek_zvirat.food + "" + popisek_zvirat.food_note
+    description = "Jak toto zvíře poznáme:" + popisek_zvirat.description
+    informace = title + description
+    print(informace)
+
+popisek_zvirat["popisek"] = popisek_zvirat.apply(popisek, axis=0)
+
 print(popisek_zvirat)
-
-
-
