@@ -22,9 +22,11 @@ print(dreviny.head())
 
 # Vytvoř graf, který ukáže vývoj objemu těžby pro tabulku smrk. Pozor, řádky nemusí být seřazené podle roku.
 smrk = pandas.read_sql("SELECT * FROM dreviny WHERE dd_txt = 'Smrk, jedle, douglaska'", con=engine)
-smrk.groupby('Smrk, jedle, douglaska')["hodnota"].sum
-plt.plot(smrk)
-plt.show()
+smrk_grouped = smrk.goupby(['hodnota'])
+#plt.plot(smrk)
+#plt.show()
+pandas.set_option('display.max_columns', None)
+print(smrk)
 # Vytvoř graf (nebo několik grafů), který ukáže vývoj objemu těžby v čase pro všechny typy nahodilé těžby.
 # Můžeš použít vlastní postup, nebo postupuj podle jedné z nápověd:
 # První metoda: agreguj tabulku nahodila_tezba pomocí metody pivot_table a na výsledek zavolej metodu plot().
